@@ -2,7 +2,7 @@ from pressure_sensor import *
 import pressure_sensor_enum as pse
 
 if __name__== "__main__":
-    sensor = PressureSensor(port="/dev/ttyUSB0", highLimit = 6.0, lowLimit=5.0, targetValue = 6.0, mode=pse.WorkingMode.WINDOW_COMPARATOR, unit = pse.Units.BAR, measureLogic= pse.MeasureLogic.POSITIVE)
+    sensor = PressureSensor(port="/dev/ttyUSB0")
     
     while(1):
         print(sensor)

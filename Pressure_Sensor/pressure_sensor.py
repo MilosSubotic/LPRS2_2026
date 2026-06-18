@@ -30,7 +30,7 @@ class PressureSensor:
                                     # 4 - PSI
     NPN_STATUS_REG = 0x0003 
 
-    def __init__(self, port, highLimit, lowLimit = None, targetValue = None, mode = pse.WorkingMode.WINDOW_COMPARATOR, unit = pse.Units.BAR, measureLogic = pse.MeasureLogic.POSITIVE):
+    def __init__(self, port, highLimit=6.0, lowLimit = 5.0, targetValue = 6.0, mode = pse.WorkingMode.WINDOW_COMPARATOR, unit = pse.Units.BAR, measureLogic = pse.MeasureLogic.POSITIVE):
 
         self.port = port
         self.instance = ModbusSerialClient(

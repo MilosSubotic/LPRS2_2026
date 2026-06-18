@@ -1,8 +1,8 @@
 from enum import Enum
 class WorkingMode(Enum):
-    EASY = 0    # <=> NORMAL
-    HYSTERESIS = 1
-    WINDOW_COMPARATOR = 2       # DEFAULT
+    EASY = 0    # <=> NORMAL   NPN turns on when pressure when under some pressure value
+    HYSTERESIS = 1             #NPN turns on when pressure is over high limit, and doesn't turn off until is under low limit
+    WINDOW_COMPARATOR = 2       # DEFAULT     NPN turns on when pressure is not in a given range
 
 class Units(Enum):
     MPA = 0
@@ -23,4 +23,4 @@ class MeasureLogic(Enum):   # Positive logic implies that the NPN connection is 
 
 class NPNstatus(Enum):
     NO = 0
-    NC = 1      
+    NC = 1     
