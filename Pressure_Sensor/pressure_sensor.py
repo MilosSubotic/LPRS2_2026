@@ -30,7 +30,7 @@ class PressureSensor:
                                     # 4 - PSI
     NPN_STATUS_REG = 0x0003 
 
-    def __init__(self, port, highLimit=6.0, lowLimit = 5.0, targetValue = 6.0, mode = pse.WorkingMode.WINDOW_COMPARATOR, unit = pse.Units.BAR, measureLogic = pse.MeasureLogic.POSITIVE):
+    def __init__(self, port, highLimit = 6.0, lowLimit = 5.0, targetValue = 6.0, mode = pse.WorkingMode.WINDOW_COMPARATOR, unit = pse.Units.BAR, measureLogic = pse.MeasureLogic.POSITIVE):
 
         self.port = port
         self.instance = ModbusSerialClient(
@@ -48,13 +48,6 @@ class PressureSensor:
     def __str__(self):
         return f"Current pressure: {self.getCurrentValue()}\nLow limit is {self.getLowLimit()}\nHigh limit is: {self.getHighLimit()}\nTarget value is: {self.getTargetValue()}\nNPN OUT value: {self.getNPNStatus()}\nWork mode: {self.getWorkMode()}"
     
-
-    def connect(self):
-        if self.instance.connect() == False:
-            print("Nije moguce povezati se na uredjaj")
-        else:
-            print("Uspesno ste se povezali na uredjaj")
-
     def getCurrentValue(self):
         try:
             value = self.instance.read_input_registers(address = self.PRESSURE_VALUE_REG)
@@ -145,7 +138,7 @@ class PressureSensor:
             self.setLowLimit(lowLimit)
             self.setHighLimit(highLimit)
             if targetValue != None:
-                self.setTargetValue(targetValue)  # ovo je upitno??
+                self.setTargetValue(targetValue) 
             
     def setPullUpResistor(self, obj = pse.NPNstatus.NO):
         if obj not in pse.NPNstatus:
