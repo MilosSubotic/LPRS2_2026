@@ -32,7 +32,7 @@ find_package(moveit_ros_planning_interface REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(xarm_msgs REQUIRED)
 find_package(xarm_planner REQUIRED)
-
+find_package(xarm_sdk REQUIRED)
 
 set(dependencies "rclcpp" "std_msgs" "geometry_msgs" "moveit_msgs" "xarm_msgs" "std_srvs" "xarm_planner")
 
@@ -89,7 +89,7 @@ target_link_libraries(hand_test
 )
 
 
-a
+
 install(TARGETS
 
   hand_test
