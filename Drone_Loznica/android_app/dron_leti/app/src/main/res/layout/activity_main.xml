@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1E1E"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Spremno za UDP"
+                android:textColor="#00FF00"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:backgroundTint="#D32F2F"
+                android:text="STOP"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="2dp" android:background="#444444" android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nagib Drona (Telemetrija)"
+            android:textColor="#FFEB3B"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+            <TextView android:id="@+id/tvDroneRoll" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Roll: 0.00" android:textColor="#FFFFFF" android:textAlignment="center" android:textSize="16sp"/>
+            <TextView android:id="@+id/tvDronePitch" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Pitch: 0.00" android:textColor="#FFFFFF" android:textAlignment="center" android:textSize="16sp"/>
+            <TextView android:id="@+id/tvDroneYaw" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Yaw: 0.00" android:textColor="#FFFFFF" android:textAlignment="center" android:textSize="16sp"/>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="2dp" android:background="#444444" android:layout_marginBottom="10dp"/>
+
+        <TextView android:id="@+id/tvThrottle" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Gas (Throttle): 1000" android:textColor="#FFFFFF" android:textAlignment="center"/>
+        <SeekBar android:id="@+id/sbThrottle" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleY="1.5" android:max="1000" android:progress="0" android:layout_marginBottom="16dp"/>
+
+        <TextView android:id="@+id/tvYaw" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Skretanje (Yaw): 0" android:textColor="#FFFFFF" android:textAlignment="center"/>
+        <SeekBar android:id="@+id/sbYaw" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleY="1.5" android:max="400" android:progress="200" android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvPitchRoll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pitch: 0.0 | Roll: 0.0"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- NOVO: Džojstik element -->
+        <com.example.dron_leti.JoystickView
+            android:id="@+id/joystickView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <View android:layout_width="match_parent" android:layout_height="2dp" android:background="#444444" android:layout_marginBottom="10dp"/>
+
+        <TextView android:id="@+id/tvPitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Napred/Nazad (Pitch): 0" android:textColor="#FFFFFF" android:textAlignment="center"/>
+        <SeekBar android:id="@+id/sbPitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleY="1.5" android:max="400" android:progress="200" android:layout_marginBottom="16dp"/>
+
+        <TextView android:id="@+id/tvRoll" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Levo/Desno (Roll): 0" android:textColor="#FFFFFF" android:textAlignment="center"/>
+        <SeekBar android:id="@+id/sbRoll" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleY="1.5" android:max="400" android:progress="200" android:layout_marginBottom="24dp"/>
+
+        <View android:layout_width="match_parent" android:layout_height="2dp" android:background="#444444" android:layout_marginBottom="10dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="PID Podešavanja" android:textColor="#00BCD4" android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Roll / Pitch (P, I, D)" android:textColor="#BBBBBB"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/etRpP" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="P" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="1.0"/>
+            <EditText android:id="@+id/etRpI" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="I" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="0.0"/>
+            <EditText android:id="@+id/etRpD" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="D" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="0.0"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Yaw (P, I, D)" android:textColor="#BBBBBB"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="16dp">
+            <EditText android:id="@+id/etYawP" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="P" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="2.0"/>
+            <EditText android:id="@+id/etYawI" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="I" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="0.0"/>
+            <EditText android:id="@+id/etYawD" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="D" android:textColorHint="#888" android:textColor="#FFF" android:inputType="numberDecimal" android:text="0.0"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnUpdatePid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00BCD4"
+            android:text="Primeni PID"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+</ScrollView>
