@@ -109,6 +109,7 @@ struct bf_zero_cross_triac {
 	u8 odd_0  : 2;
 	u8        : 1;
 	u8 odd_1  : 1;
+
 	// PORTD
 	u8        : 4;
 	u8 drv1   : 1;
@@ -142,3 +143,97 @@ struct bf_zero_cross_triac {
 	u8        : 8;
 };
 #define zct (*((volatile bf_zero_cross_triac*)(&PIND)))
+
+struct bf_keyboard {
+	// PIND
+	u8        : 6;
+	u8 r0     : 1;
+	u8        : 1;
+
+	// DDRD
+	u8        : 6;
+	u8 r0_dir : 1;
+	u8        : 1;
+
+	// PORTD
+	u8        : 6;
+	u8 r0_out : 1;
+	u8        : 1;
+
+
+	// PINC
+	union {
+		struct {
+			u8 r1 : 1;
+			u8 r2 : 1;
+			u8 r3 : 1;
+			u8 r4 : 1;
+
+			u8 c3 : 1;
+			u8 c2 : 1;
+			u8 c1 : 1;
+			u8 c0 : 1;
+		};
+
+		struct {
+			u8 rows_in : 4;
+			u8 cols_in : 4;
+		};
+	};
+
+	// DDRC
+	union {
+		struct {
+			u8 r1_dir : 1;
+			u8 r2_dir : 1;
+			u8 r3_dir : 1;
+			u8 r4_dir : 1;
+
+			u8 c3_dir : 1;
+			u8 c2_dir : 1;
+			u8 c1_dir : 1;
+			u8 c0_dir : 1;
+		};
+	};
+
+	// PORTC
+	union {
+		struct {
+			u8 r1_out : 1;
+			u8 r2_out : 1;
+			u8 r3_out : 1;
+			u8 r4_out : 1;
+
+			u8 c3_pullup : 1;
+			u8 c2_pullup : 1;
+			u8 c1_pullup : 1;
+			u8 c0_pullup : 1;
+		};
+
+		struct {
+			u8 rows_out : 4;
+			u8 cols_pullup : 4;
+		};
+	};
+
+
+	// PINB
+	u8        : 8;
+
+	// DDRB
+	u8        : 8;
+
+	// PORTB
+	u8        : 8;
+
+	// PINA
+	u8        : 8;
+
+	// DDRA
+	u8        : 8;
+
+	// PORTA
+	u8        : 8;
+};
+
+#define keyboard (*((volatile bf_keyboard*)(&PIND)))
