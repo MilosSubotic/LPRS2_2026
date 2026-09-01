@@ -1,0 +1,81 @@
+Car:
+-Common:
+	-HW:
+		-Kicaid stuff
+-FW:
+	-Arduino_Motor_Controller:
+		-Arduino_Motor_Controller.ino (Main arudino code)
+		-avr_io_bitfields.h (abstraction layer for AVR microcontrollers)
+		-avr_type_traits.h (not 100% sure, some open source "brain"?)
+		-CRC16.hpp (checksum)
+		-fw_pgks.hpp (our communication protocol)
+		-sabertooth.c (translator from PI to arduino?)
+		-sabertooth.h (error checking)
+		-SoftwareSerial2.cpp (allows as to turn any 2 digital pins into a serial port by using the CPU to handle the timing manually)
+		-SoftwareSerial2.h (implementation for Serial library for arduino)
+		-type_shorts.h (type definer?) (// Koristimo vlastite nazive tipova samo ako vec nisu definisani// Arduino core već definiše u8, u16, u32, pa da ne dođe do konflikta)
+	-Test code:
+		-ArduinoTest.ino (testcode for ultrasound sensor)
+-HW:
+	-Arduino_Automotive_Ultrasound_Shield:
+		-Kicaid stuff
+-ROS2:
+	-ackitbot_ws:
+		-scripts:
+			-ackibot_basic_flow.sh (startup script, runs install and build)
+			-ackitbot_flow.sh (test script?)
+			-ackitbot_run_sbc.sh (starts the robot)
+			-mars_joy_remove_pair.py (pairs car and controller)
+			-mars_joy_remove.py (forgets connection)
+			-mars_joy_sbc_from_pc.sh (remote control?)
+			-mars_joy.sh (runs mars_joy_remove_pair.py to reset connection)
+			-mybot_build.sh (builds, recompiles code)
+			-mybot_flow.sh (run all)
+			-mybot_install.sh (first boot install)
+		-src:
+			-ackibot_bringup:
+				-CMake and some python scripts
+			-ackibot_description:
+				-No idea
+			-ackibot_node:
+				-include:(same files from arduino, need to be copied after any changes)
+					-CRC16.hpp
+					-fw_pkgs.hpp
+					-type_shorts.h
+				-src:
+					-diff_drive_controller.cpp (class with wheel separation and wheel radius)
+					-diff_drive_controller.hpp (differencial? ! nemamo diferencial !)
+					-fw_node.cpp (connects sabertooth and ROS2): needs more explanation !
+						-
+					-fw_node.hpp (fw_node contains important code)
+					-main.cpp (creates nodes)
+					-odometry.cpp (odometry for differential drive)?
+					-odometry.hpp (-||-)
+					-sabertooth.c (-||-)
+					-sabertooth.h (-||-)
+			-ackibot_teleop:
+				-some scripts CMake and joy_node.cpp
+			-ackibot_utils:
+				-more scripts...
+			-joy:
+				-scripts...
+				-include:
+					-game_controller.hpp (bridge between ROS and IRL controller)
+					-joy.hpp ?
+				-src:
+					-game_controller.cpp (converts values for controller)
+					-joy.cpp ?
+					-joy_enumerate_devices.cpp (! gleda nesto controlere !)
+			-twist_mux:
+				-scripts ofc...
+				-bunch off .hpp in include
+				-test scripts
+				-src:
+					-twist_marker.cpp (Converts robot movement into RViz so we can virtually see robot movements) 
+					-twist_mux.cpp (Mux with priorities, locks a way of controlling if one of higher priority has been detected)
+					-twist_mux_diagnostics.cpp (Reports on locks from mux, diagnostics)
+					-twist_mux_node.cpp (inicialization of ROS)
+-SW:
+	-paket_test.py
+-work.txt
+-README.md
